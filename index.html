@@ -337,11 +337,89 @@ alex  instanceof LegoMan
 LegoMan[@@hasInstance](alex)
 					</pre></code>
                     <aside class="notes">
-						compares prototypes
+						compares prototypes => may lie!!! prototype can be overriden with regular JS
 					</aside>
                 </section>
                 <section>
-                    <h2>Inheritance</h2>
+                    <section>
+                        <h2>Inheritance</h2>
+                        <ul>
+                            <li><span class="-highlight">Crockford</span> way</li>
+                            <li>ES5 way</li>
+                            <li>ES2015 way</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Inheritance <span class="-highlight">Crockford way</span></h2>
+                        <pre class="fragment"><code>
+function extend(Child, Parent) {
+    var F = function() { }
+    F.prototype = Parent.prototype;
+    Child.prototype = new F();
+    Child.prototype.constructor = Child;
+    Child.superclass = Parent.prototype; // optional
+}
+					</pre></code>
+                    </section>
+                    <section>
+                        <h2>Inheritance <span class="-highlight">ES5 way</span></h2>
+                        <pre class="fragment"><code>
+function extend(Child, Parent) {
+    Child.prototype = Object.create(Parent.prototype);
+    Child.prototype.constructor = Child;
+    Child.superclass = Parent.prototype; // optional
+}
+					    </pre></code>
+                    </section>
+                    <section>
+                        <h2>Inheritance <span class="-highlight">ES5 way</span></h2>
+<pre class="minimal-code"><code>
+function extend(Child, Parent) {
+    Child.prototype = Object.create(Parent.prototype);
+    Child.prototype.constructor = Child;
+    Child.superclass = Parent.prototype; // optional
+}
+</pre></code>
+<pre class="fragment minimal-code" data-fragment-index="0"><code>
+function LegoBatMan(name) {
+    LegoBatMan.superclass.constructor.call(this, name);
+}
+</pre></code>
+<pre class="fragment minimal-code" data-fragment-index="1"><code>
+extend(LegoBatMan, LegoMan);
+</pre></code>
+                        <div style="position: relative;">
+                            <img data-src="img/protolinks-2.png" style="width: 50%;" />
+                            <img class="fragment" data-fragment-index="0" data-src="img/es5-inheritance-0.png" style="width: 50%; height: 100%; position: absolute; transform: translateX(-100%);" />
+                            <img class="fragment" data-fragment-index="1" data-src="img/es5-inheritance-1.png" style="width: 50%; height: 100%; position: absolute; transform: translateX(-100%);" />
+                            <img class="fragment" data-fragment-index="2" data-src="img/es5-inheritance-1-5.png" style="width: 50%; height: 100%; position: absolute; transform: translateX(-100%);" />
+                            <img class="fragment" data-fragment-index="3" data-src="img/es5-inheritance-2.png" style="width: 50%; height: 100%; position: absolute; transform: translateX(-100%);" />
+                            <img class="fragment" data-fragment-index="4" data-src="img/es5-inheritance-3.png" style="width: 50%; height: 100%; position: absolute; transform: translateX(-100%);" />
+                        </div>
+                    </section>
+                    <section>
+                        <h2>Inheritance <span class="-highlight">ES2015 way</span></h2>
+                        <pre class="fragment"><code>
+class LegoBatMan extends LegoMan {
+    constructor(name) {
+        super(name);
+    }
+
+    say(message) {
+        console.log('|\\__/|');
+        super.say(message);
+        console.log('|\\__/|');
+    }
+}
+					    </pre></code>
+                        <pre class="fragment"><code>
+const bruce = new LegoBatMan('Bruce');
+bruce.say('this city needs a hero');
+// |\__/|
+// Bruce: "this city needs a hero"
+// |\__/|
+					    </pre></code>
+                    </section>
                 </section>
                 <section>
 					<h2>Why classes are <span class="-highlight">good</span>?</h2>
