@@ -189,6 +189,9 @@ var alex = new LegoMan('Alex');
                             <img class="fragment" data-fragment-index="0" data-src="img/protolinks-1.png" style="width: 50%; position: absolute; transform: translateX(-100%);" />
                             <img class="fragment" data-fragment-index="1" data-src="img/protolinks-2.png" style="width: 50%; position: absolute; transform: translateX(-100%);" />
                         </div>
+                        <aside class="notes">
+							Function.prototype - special function object
+						</aside>
                     </section>
                     <section>
 						<h2>Classes in JS <span class="-highlight">ES2015 classes</span></h2>
@@ -328,11 +331,11 @@ class LegoMan {
 }
 
 const alex = new LegoMan('Alex');
-alex  instanceof LegoMan // true
-alex  instanceof Object // true
+alex instanceof LegoMan // true
+alex instanceof Object // true
 					</pre></code>
                     <pre class="fragment"><code>
-alex  instanceof LegoMan
+alex instanceof LegoMan
 
 LegoMan[@@hasInstance](alex)
 					</pre></code>
@@ -341,6 +344,19 @@ LegoMan[@@hasInstance](alex)
 					</aside>
                 </section>
                 <section>
+                    <section>
+                        <h2>Inheritance</h2>
+                        <h4 class="fragment"><span class="-highlight">Classical</span> (C++, C#, Java)</h4>
+                        <ul>
+                            <li class="fragment">classes inherit from classes</li>
+                            <li class="fragment">and create subclass relationships: hierarchical class taxonomies</li>
+                        </ul>
+                        <h4 class="fragment"><span class="-highlight">Prototypal</span> (Lua, JavaScript)</h4>
+                        <ul>
+                            <li class="fragment">A prototype is a working object instance</li>
+                            <li class="fragment">Objects inherit directly from other objects</li>
+                        </ul>
+                    </section>
                     <section>
                         <h2>Inheritance</h2>
                         <ul>
@@ -458,12 +474,12 @@ bruce.say('this city needs a hero');
 				<section>
 					<h2><span class="-highlight">PS</span></h2>
                     <ul>
-                        <li class="fragment">"favour composition over inheritance" - GoF</li>
+                        <li class="fragment">"favor composition over class inheritance" - GoF</li>
                         <li class="fragment">"don’t inherit more than once" - Dan Abramov</li>
                         <li class="fragment">"use your brain" - Dzmitry Varabei</li>
                     </ul>
                     <aside class="notes">
-                        "favour"" doesn't mean "always use""
+                        "favour" doesn't mean "always use"
 					</aside>
 				</section>
                 <section>
